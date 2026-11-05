@@ -1,10 +1,16 @@
-# GoFerry Travel Challenge v0.7
+# GoFerry Travel Challenge v0.8
 
-- Open index.html directly in a browser; no build or server needed.
-- Both home cards now use matching flat vector cartoon illustrations (inline SVG); no photo-realistic images.
-- Travel Match preserves Invite & Play, 10 question flow, sequential friends (same-device local demo) and compatibility scoring.
-- 10 revised questions collect *declared travel preferences*, shown only in a private profile preview after completion.
-- All interface copy stays in English and tagline stays Play & win real rewards.
-- No backend, no live invitations, no emails, no phone collection, no marketing consent, no prize functionality.
-- Answers are stored locally for this demo; production requires privacy design, lawful basis, security and consent architecture.
-- Catch the Ferry is unchanged from v0.6.
+Static mobile-friendly prototype, published from main / root with GitHub Pages.
+
+- New matching summer cartoon illustrations for both games.
+- Home headline: Enjoy your time and win free ferry tickets!
+- Travel Match: 10 playful ferry-focused questions, including departure area and port, vehicle, island hopping, booking channel, booking lead time and booking motivator.
+- Departure port is an extra detail on question 5; it does not change the ten-question compatibility score.
+- Question/profile schema uses a new local storage key so v0.7 answers are not interpreted with different meanings.
+- Catch the Ferry gameplay is unchanged.
+- Demo only: prize draws, cross-device results and central collection of customer data are not enabled. Answers and profile preview stay in the browser.
+- No build tools, third-party scripts, paid services or backend.
+
+## Images
+
+catch-the-ferry-v08.webp and travel-match-v08.webp are AI-generated original cartoon illustrations prepared for these cards.
