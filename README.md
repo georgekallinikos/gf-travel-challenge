@@ -1,16 +1,19 @@
-# GoFerry Travel Challenge v0.8
+# GoFerry Travel Challenge v0.9
 
 Static mobile-friendly prototype, published from main / root with GitHub Pages.
 
-- New matching summer cartoon illustrations for both games.
-- Home headline: Enjoy your time and win free ferry tickets!
-- Travel Match: 10 playful ferry-focused questions, including departure area and port, vehicle, island hopping, booking channel, booking lead time and booking motivator.
-- Departure port is an extra detail on question 5; it does not change the ten-question compatibility score.
-- Question/profile schema uses a new local storage key so v0.7 answers are not interpreted with different meanings.
+- Flat/vector illustrations for both games, aligned with the original visual style.
+- Simplified home screen without repeated Travel Challenge or Available Games labels.
+- Travel Match: 10 playful ferry-focused questions, including onboard preference, vehicle, island hopping, booking channel, booking lead time and booking motivator.
+- Customer-facing travel profile removed. Commercial interpretation belongs only in GoFerry's private dashboard.
+- Host invitation remains at the beginning; after answering, the host waits for invited players.
+- Positive score messaging and future GoFerry app/prize-draw CTA added.
+- `admin-demo.html` presents a sample-data dashboard for team review.
+- `IMPLEMENTATION_HANDOFF.md` defines the production API/data work.
 - Catch the Ferry gameplay is unchanged.
-- Demo only: prize draws, cross-device results and central collection of customer data are not enabled. Answers and profile preview stay in the browser.
+- Demo only: prize draws, cross-device results, app attribution and central collection of customer data are not enabled. Answers stay in the browser.
 - No build tools, third-party scripts, paid services or backend.
 
 ## Images
 
-catch-the-ferry-v08.webp and travel-match-v08.webp are AI-generated original cartoon illustrations prepared for these cards.
+`catch-the-ferry-v09.svg` and `travel-match-v09.svg` are original flat vector illustrations prepared for the two cards.

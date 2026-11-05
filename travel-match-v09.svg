@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 400" role="img" aria-labelledby="title desc">
+  <title id="title">Travel Match</title><desc id="desc">Flat vector illustration of a couple and two friends enjoying a ferry trip.</desc>
+  <rect width="1200" height="400" fill="#fff1d2"/>
+  <circle cx="1050" cy="72" r="54" fill="#ffd16e"/>
+  <path d="M0 283Q180 195 385 272T775 267T1200 225V400H0Z" fill="#a9e3dd"/>
+  <path d="M0 328Q225 275 430 330T820 322T1200 281V400H0Z" fill="#5bbfc9"/>
+  <path d="M941 219l76-87 86 95z" fill="#fff"/><path d="M941 219l76-87 24 24-65 75z" fill="#d9eef0"/><rect x="1010" y="155" width="14" height="64" fill="#1882a4"/>
+  <g transform="translate(205 53)">
+    <circle cx="0" cy="66" r="48" fill="#efbd99"/><path d="M-47 57Q-52 1 6 16Q48 21 49 66Q16 30-28 39Z" fill="#60413a"/>
+    <path d="M-76 178Q-70 118 0 118Q69 118 77 178V347H-77Z" fill="#f58e59"/>
+  </g>
+  <g transform="translate(443 53)">
+    <circle cx="0" cy="66" r="48" fill="#d79a72"/><path d="M-45 45Q-17-10 25 18L51 51Q12 33-31 51Z" fill="#243f57"/>
+    <path d="M-77 178Q-70 118 0 118Q69 118 77 178V347H-77Z" fill="#48a7c3"/>
+    <path d="M-65 151Q-123 151-164 106" fill="none" stroke="#d79a72" stroke-width="24" stroke-linecap="round"/>
+  </g>
+  <path d="M286 164Q330 194 373 164" fill="none" stroke="#fff" stroke-width="7" stroke-linecap="round" opacity=".85"/>
+  <g transform="translate(725 53)">
+    <circle cx="0" cy="66" r="48" fill="#e6af85"/><path d="M-49 57Q-37 3 12 19Q54 20 48 76L30 48L-29 39Z" fill="#84523d"/>
+    <path d="M-77 178Q-70 118 0 118Q69 118 77 178V347H-77Z" fill="#8c86c9"/>
+  </g>
+  <g transform="translate(951 53)">
+    <circle cx="0" cy="66" r="48" fill="#bb805f"/><path d="M-47 62Q-47 15 0 17Q50 9 51 59L16 34L-34 55Z" fill="#382e33"/>
+    <path d="M-77 178Q-70 118 0 118Q69 118 77 178V347H-77Z" fill="#68b58f"/>
+    <path d="M-67 151Q-118 151-155 111" fill="none" stroke="#bb805f" stroke-width="24" stroke-linecap="round"/>
+  </g>
+  <path d="M795 170Q836 195 879 165" fill="none" stroke="#fff" stroke-width="7" stroke-linecap="round" opacity=".85"/>
+  <path d="M0 359H1200" stroke="#f9fdff" stroke-width="9" opacity=".8"/>
+</svg>

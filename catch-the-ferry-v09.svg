@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 400" role="img" aria-labelledby="title desc">
+  <title id="title">Catch the Ferry</title><desc id="desc">Flat vector illustration of a ferry sailing toward a Greek island.</desc>
+  <rect width="1200" height="400" fill="#c8f1f6"/>
+  <circle cx="1020" cy="74" r="48" fill="#ffd46f"/>
+  <path d="M0 204Q170 130 350 210T720 196T1200 170V400H0Z" fill="#67cbdc"/>
+  <path d="M0 282Q220 214 430 288T820 272T1200 238V400H0Z" fill="#1798bd"/>
+  <path d="M0 318Q190 274 390 330T770 324T1200 282V400H0Z" fill="#087fa9" opacity=".72"/>
+  <path d="M0 143Q94 72 207 107L310 188L179 195L48 170Z" fill="#efd09a"/>
+  <path d="M92 127l62-58 67 70z" fill="#fff"/><path d="M92 127l62-58 17 18-58 54z" fill="#d9eef0"/>
+  <rect x="145" y="91" width="12" height="48" fill="#1882a4"/>
+  <path d="M944 141Q1033 52 1140 96L1200 155V213L1052 189Z" fill="#f2d7a0"/>
+  <path d="M1000 137l61-67 68 74z" fill="#fff"/><rect x="1055" y="91" width="12" height="53" fill="#1882a4"/>
+  <g transform="translate(600 48)">
+    <path d="M-137 236L-93 56Q0 13 93 56L137 236Q34 306-137 236Z" fill="#075f82"/>
+    <path d="M-110 222L-72 73Q0 42 72 73L110 222Q22 268-110 222Z" fill="#fff"/>
+    <path d="M-73 77Q0 46 73 77L81 112H-81Z" fill="#e7f4f5"/>
+    <rect x="-66" y="91" width="132" height="35" rx="10" fill="#9edce7"/>
+    <g fill="#087da5"><rect x="-53" y="101" width="30" height="14" rx="4"/><rect x="-15" y="101" width="30" height="14" rx="4"/><rect x="23" y="101" width="30" height="14" rx="4"/></g>
+    <rect x="-37" y="44" width="74" height="39" rx="8" fill="#fff"/><rect x="-27" y="52" width="54" height="20" rx="5" fill="#087da5"/>
+    <path d="M-91 151H91" stroke="#008ab2" stroke-width="15"/>
+    <g fill="#c6e9ee"><rect x="-76" y="174" width="32" height="16" rx="5"/><rect x="-16" y="174" width="32" height="16" rx="5"/><rect x="44" y="174" width="32" height="16" rx="5"/></g>
+  </g>
+  <path d="M485 342Q590 400 710 340" fill="none" stroke="#fff" stroke-width="13" stroke-linecap="round" opacity=".65"/>
+  <path d="M514 363Q600 406 680 365" fill="none" stroke="#fff" stroke-width="7" stroke-linecap="round" opacity=".55"/>
+</svg>
