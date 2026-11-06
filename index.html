@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<title>GoFerry Travel Challenge — v0.9</title>
+<title>GoFerry Travel Challenge — v0.10</title>
 <style>
 
 :root{--blue:#008ab2;--deep:#07364d;--dark:#0d3044;--bg:#f3f8fb;--soft:#e8f4f8;--muted:#6d8190;--line:#d9e8ee;--yellow:#ffce56;--card:#ffffff}
@@ -11,7 +11,7 @@
 .top{padding:18px 20px 12px;display:flex;justify-content:flex-start;align-items:center;border-bottom:1px solid #eef5f8;background:#fff;position:sticky;top:0;z-index:5}.brand-logo{height:32px;width:auto;display:block}.top-mini{display:none}.mini{font-size:11px;font-weight:800;color:var(--muted);letter-spacing:.13em;text-transform:uppercase}
 .home{padding:18px 20px 30px}.intro{padding:4px 2px 16px}.intro h1{font-size:30px;line-height:1.08;letter-spacing:-1.2px;margin:0 0 10px}.intro .mini{margin-bottom:10px}.intro p{font-weight:750;font-size:18px!important;margin:0;color:var(--muted);font-size:14px;line-height:1.6;max-width:360px}.section-label{margin:14px 2px 12px;font-size:12px;font-weight:800;letter-spacing:.08em;color:#6f8791;text-transform:uppercase}
 .game-card{width:100%;border:1px solid var(--line);border-radius:20px;overflow:hidden;background:#fff;text-align:left;padding:0;margin-bottom:12px;display:block;box-shadow:0 6px 18px #003d520d;transition:transform .2s,box-shadow .2s}.game-card:hover{transform:translateY(-1px);box-shadow:0 10px 24px #003d5218}.game-art{height:auto;aspect-ratio:3/1;position:relative;overflow:hidden;display:flex;align-items:center;justify-content:center}.game-art img{display:block;width:100%;height:100%;object-fit:cover;object-position:center 50%}.art-ferry{background:linear-gradient(180deg,#dff5fb,#cbeef6)}.art-match{background:linear-gradient(180deg,#fff5d6,#ffe6d8)}.game-art .symbol{font-size:44px;filter:drop-shadow(0 7px 5px #0001)}.island{position:absolute;width:84px;height:44px;background:#ffe1a3;border-radius:50%;bottom:-24px;left:-18px;transform:rotate(-10deg);opacity:.8}.island.right{left:auto;right:-18px;bottom:-19px}.game-content{padding:16px 18px 18px}.game-row{display:flex;justify-content:space-between;align-items:center;gap:12px}.game-content h2{font-size:20px;letter-spacing:-.5px;margin:0 0 5px}.game-content p{font-size:13px;line-height:1.55;color:var(--muted);margin:0 0 10px}.pill{border-radius:999px;background:var(--soft);color:var(--blue);padding:6px 9px;font-size:10px;font-weight:850;white-space:nowrap}.arrow{background:#edf7fa;color:var(--blue);width:34px;height:34px;display:grid;place-items:center;border-radius:50%;font-size:18px;font-weight:900}
-.page{padding:0 21px 35px}.back{border:0;background:transparent;color:var(--deep);font-size:13px;font-weight:700;padding:9px 0 17px}.back:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible{outline:3px solid #ffa900;outline-offset:2px}.page-title{font-size:31px;line-height:1.1;letter-spacing:-1.1px;margin:5px 0 10px}.subtitle{color:var(--muted);line-height:1.55;font-size:14px;margin:0 0 20px}.invite-box{padding:19px;background:#f7fbfc;border:1px solid var(--line);border-radius:22px}.invite-box h3{margin:0 0 13px;font-size:14px}.methods{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px}.method{border:1.5px solid var(--line);background:white;border-radius:14px;padding:14px 2px;display:flex;align-items:center;flex-direction:column;gap:5px;color:var(--deep);font-weight:750;font-size:12px}.method .ico{font-size:23px}.method.selected{border-color:var(--blue);background:#e8f8fc;color:#006d91}.field{width:100%;border:1px solid #b6d8e3;border-radius:12px;padding:13px 12px;background:white;margin-top:12px;font-size:14px}.hint{font-size:12px;color:var(--muted);line-height:1.45;margin:11px 0 0}.primary{border:0;background:var(--blue);color:#fff;border-radius:15px;font-weight:850;font-size:15px;padding:15px 17px;width:100%;margin-top:18px}.secondary{border:1px solid #b2d7e3;background:white;color:#006d91;border-radius:14px;padding:12px 15px;font-weight:800}.linkbtn{border:0;background:transparent;color:#008ab2;padding:10px;font-weight:800}.feedback{font-size:12px;color:#16754e;min-height:18px;margin-top:9px}.tiny{font-size:11px;color:var(--muted);line-height:1.5}.progress-label{display:flex;justify-content:space-between;font-size:12px;font-weight:800;color:var(--muted);margin:10px 0}.bar{height:7px;background:#e5f0f4;border-radius:10px;overflow:hidden}.bar>div{height:100%;background:var(--blue);border-radius:10px;transition:width .2s}.question{font-size:25px;line-height:1.25;letter-spacing:-.7px;margin:27px 0 20px}.answer{display:flex;align-items:center;gap:12px;width:100%;min-height:58px;border-radius:16px;border:1.5px solid var(--line);background:#fff;text-align:left;padding:12px;font-weight:650;color:var(--deep);font-size:14px;margin:9px 0}.answer.active{border-color:var(--blue);background:#e7f6fc}.answer .radio{width:22px;height:22px;border:2px solid #b5cdd6;flex:none;border-radius:50%;display:grid;place-items:center}.answer.active .radio{border-color:var(--blue)}.answer.active .radio::after{content:"";height:10px;width:10px;border-radius:50%;background:var(--blue)}.controls{display:flex;gap:10px;align-items:center;margin-top:20px}.controls>.primary{margin:0;flex:1}.success-circle{margin:30px auto 14px;width:90px;height:90px;border-radius:50%;background:#d9f7e9;display:grid;place-items:center;font-size:40px}.center{text-align:center}.stat{font-size:52px;letter-spacing:-2px;font-weight:900;color:var(--blue)}.resultcard{background:linear-gradient(135deg,#00779e,#004e70);border-radius:20px;padding:23px;color:white;text-align:center;margin:18px 0}.resultcard .stat{color:white}.note{padding:14px;background:#fff8e9;border:1px solid #f4e1ab;border-radius:13px;font-size:12px;line-height:1.6;color:#795b19;margin-top:20px}.invite-url{display:flex;gap:8px;align-items:center;word-break:break-all;background:white;border:1px solid var(--line);border-radius:12px;padding:10px;margin-top:13px;font-size:11px;color:var(--muted)}.invite-url span{flex:1}.invite-url button{border:0;background:#e2f6fb;color:var(--blue);padding:8px;border-radius:9px;font-weight:800}.hidden{display:none!important}.foot{padding:20px;color:#8298a3;text-align:center;font-size:11px}@media(min-width:650px){.shell{min-height:100vh}}@media(prefers-reduced-motion:reduce){*{transition:none!important}}
+.page{padding:0 21px 35px}.back{border:0;background:transparent;color:#7c909a;font-size:11px;font-weight:650;padding:9px 0 14px}.back:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible{outline:3px solid #ffa900;outline-offset:2px}.page-title{font-size:31px;line-height:1.1;letter-spacing:-1.1px;margin:5px 0 10px}.subtitle{color:var(--muted);line-height:1.55;font-size:14px;margin:0 0 20px}.steps{display:grid;gap:9px;margin:16px 0 21px}.step-card{display:flex;align-items:center;gap:11px;padding:11px 13px;border:1px solid var(--line);border-radius:14px;background:#f8fbfc;text-align:left;font-size:13px;font-weight:750}.step-number{display:grid;place-items:center;width:25px;height:25px;flex:none;border-radius:50%;background:var(--blue);color:#fff;font-size:12px;font-weight:900}.invite-box{padding:19px;background:#f7fbfc;border:1px solid var(--line);border-radius:22px}.invite-box h3{margin:0 0 13px;font-size:14px}.methods{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px}.method{border:1.5px solid var(--line);background:white;border-radius:14px;padding:14px 2px;display:flex;align-items:center;flex-direction:column;gap:5px;color:var(--deep);font-weight:750;font-size:12px}.method .ico{font-size:23px}.method.selected{border-color:var(--blue);background:#e8f8fc;color:#006d91}.field{width:100%;border:1px solid #b6d8e3;border-radius:12px;padding:13px 12px;background:white;margin-top:12px;font-size:14px}.hint{font-size:12px;color:var(--muted);line-height:1.45;margin:11px 0 0}.primary{border:0;background:var(--blue);color:#fff;border-radius:15px;font-weight:850;font-size:15px;padding:15px 17px;width:100%;margin-top:18px}.secondary{border:1px solid #b2d7e3;background:white;color:#006d91;border-radius:14px;padding:12px 15px;font-weight:800}.linkbtn{border:0;background:transparent;color:#008ab2;padding:10px;font-weight:800}.feedback{font-size:12px;color:#16754e;min-height:18px;margin-top:9px}.tiny{font-size:11px;color:var(--muted);line-height:1.5}.progress-label{display:flex;justify-content:space-between;font-size:12px;font-weight:800;color:var(--muted);margin:10px 0}.bar{height:7px;background:#e5f0f4;border-radius:10px;overflow:hidden}.bar>div{height:100%;background:var(--blue);border-radius:10px;transition:width .2s}.question{font-size:25px;line-height:1.25;letter-spacing:-.7px;margin:27px 0 20px}.answer{display:flex;align-items:center;gap:12px;width:100%;min-height:58px;border-radius:16px;border:1.5px solid var(--line);background:#fff;text-align:left;padding:12px;font-weight:650;color:var(--deep);font-size:14px;margin:9px 0}.answer.active{border-color:var(--blue);background:#e7f6fc}.answer .radio{width:22px;height:22px;border:2px solid #b5cdd6;flex:none;border-radius:50%;display:grid;place-items:center}.answer.active .radio{border-color:var(--blue)}.answer.active .radio::after{content:"";height:10px;width:10px;border-radius:50%;background:var(--blue)}.controls{display:flex;gap:10px;align-items:center;margin-top:20px}.controls>.primary{margin:0;flex:1}.success-circle{margin:30px auto 14px;width:90px;height:90px;border-radius:50%;background:#d9f7e9;display:grid;place-items:center;font-size:40px}.center{text-align:center}.stat{font-size:52px;letter-spacing:-2px;font-weight:900;color:var(--blue)}.resultcard{background:linear-gradient(135deg,#00779e,#004e70);border-radius:20px;padding:23px;color:white;text-align:center;margin:18px 0}.resultcard .stat{color:white}.result-message{font-size:15px;line-height:1.55;font-weight:750}.note{padding:14px;background:#fff8e9;border:1px solid #f4e1ab;border-radius:13px;font-size:12px;line-height:1.6;color:#795b19;margin-top:20px}.invite-url{display:flex;gap:8px;align-items:center;word-break:break-all;background:white;border:1px solid var(--line);border-radius:12px;padding:10px;margin-top:13px;font-size:11px;color:var(--muted)}.invite-url span{flex:1}.invite-url button{border:0;background:#e2f6fb;color:var(--blue);padding:8px;border-radius:9px;font-weight:800}.share-again{margin:18px 0;padding:17px;border:1px solid var(--line);border-radius:18px;background:#f7fbfc;text-align:left}.share-again h3{margin:0 0 5px;font-size:16px}.share-again p{margin:0 0 12px;color:var(--muted);font-size:12px;line-height:1.5}.share-again .secondary{width:100%}.hidden{display:none!important}.foot{padding:20px;color:#8298a3;text-align:center;font-size:11px}@media(min-width:650px){.shell{min-height:100vh}}@media(prefers-reduced-motion:reduce){*{transition:none!important}}
 /* Catch the Ferry v0.6 — focused improvements; Travel Match remains largely unchanged */
 .ferry-intro{margin-bottom:14px}.ferry-intro .subtitle{margin-bottom:8px}.ferry-hud{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin:14px 0 10px}.hud-tile{padding:10px;border-radius:13px;background:#e9f7fb;text-align:center}.hud-tile small{display:block;font-size:10px;color:#567b8c;font-weight:800;letter-spacing:.08em}.hud-tile strong{display:block;margin-top:3px;font-weight:900;font-size:18px;color:#063d57}.ferry-progress{height:8px;border-radius:99px;background:#dceef4;overflow:hidden;margin-bottom:10px}.ferry-progress-fill{width:0%;height:100%;background:linear-gradient(90deg,#00a8c2,#ffbc4a);transition:width .12s linear}.sea{height:auto;aspect-ratio:440/490;border-radius:20px;border:4px solid #c7eef7;box-shadow:0 12px 25px #006b991e;background:#0b98ba;touch-action:none;user-select:none}.sea canvas{height:100%;width:100%;touch-action:none}.ferry-controls{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:12px;max-width:190px}.ferry-controls button{border:1px solid #a9dce9;background:#e6f9fd;color:#005779;border-radius:14px;min-height:44px;font-size:18px;font-weight:800;touch-action:none;user-select:none;padding:0}.ferry-controls button:active{background:#b7eafa}.ferry-action-row{display:flex;gap:10px;margin-top:13px}.ferry-action-row .primary{margin:0;flex:1}.ferry-action-row .secondary{min-width:105px}.ferry-help{font-size:12px;line-height:1.5;color:var(--muted);margin:11px 0}.ferry-notice{font-size:12px;line-height:1.4;font-weight:700;color:#0a6680;margin:9px 0 2px}.ferry-end-badge{font-size:60px;margin:15px auto 6px}.ferry-end-high{border:1px solid #cce8f1;border-radius:16px;background:#f2fbfd;padding:13px;margin:10px 0;color:#28627a}.ferry-result-score{font-size:55px;font-weight:900;color:#008ab2;letter-spacing:-2px}.ferry-breadcrumb{margin-bottom:9px}.ferry-controls button:focus-visible{outline:3px solid #e9a900;outline-offset:2px}
 
@@ -26,46 +26,28 @@ const Q=[
  [
   "Your next island crush? 🏝️",
   [
-   "Cyclades",
-   "Crete",
-   "Ionian Islands",
-   "Dodecanese"
+   "Cyclades 🏛️",
+   "Crete 🏖️",
+   "Ionian Islands 🌿",
+   "Dodecanese ☀️"
   ]
  ],
  [
-  "Who’s in your holiday group chat? 💬",
+  "Who’s joining your next island escape? 🧳",
   [
-   "My partner",
-   "My friends",
-   "My family",
-   "Just me"
+   "My partner ❤️",
+   "My friends 😎",
+   "My family 👨‍👩‍👧‍👦",
+   "Just me 🎒"
   ]
  ],
  [
-  "When does your summer mood kick in? ☀️",
+  "When would you love to travel? ☀️",
   [
-   "Spring escapes",
-   "June sunshine",
-   "July–August buzz",
-   "September calm"
-  ]
- ],
- [
-  "How long are we disappearing for? 😎",
-  [
-   "A weekend",
-   "3–4 days",
-   "A whole week",
-   "10+ days"
-  ]
- ],
- [
-  "Your ferry is booked! How are you crossing? ⛴️",
-  [
-   "Deck all the way — sea breeze included 🌊",
-   "A comfy reserved seat 💺",
-   "Cabin mode — wake me up at the island 🛏️",
-   "Whatever gives me the best deal 💙"
+   "Spring (March–May) 🌸",
+   "Summer (June–August) ☀️",
+   "Autumn (September–November) 🍂",
+   "Winter (December–February) ❄️"
   ]
  ],
  [
@@ -80,10 +62,10 @@ const Q=[
  [
   "One island? Or keep the adventure going? 🏝️",
   [
-   "One island, all the memories",
-   "Two islands, double the fun",
-   "Three or more — island hopping!",
-   "A mainland escape this time"
+   "One island, all the memories 🏝️",
+   "Two islands, double the fun ✌️",
+   "Three or more — island hopping! ⛴️",
+   "A mainland escape this time 🗺️"
   ]
  ],
  [
@@ -98,26 +80,26 @@ const Q=[
  [
   "Your booking personality? 📅",
   [
-   "Months ahead",
-   "A few weeks ahead",
-   "Last-minute legend",
-   "Whenever a great deal drops"
+   "Months ahead 🗓️",
+   "A few weeks ahead ⏳",
+   "Last-minute legend ⚡",
+   "Whenever a great deal drops 💙"
   ]
  ],
  [
   "What makes you hit “Book now”? 💙",
   [
-   "A better price",
-   "The perfect departure time",
-   "A faster crossing",
-   "Flexible changes"
+   "A better price 💶",
+   "The perfect departure time 🕐",
+   "A faster crossing ⚡",
+   "Flexible changes 🔄"
   ]
  ]
 ];
-const PROFILE_FIELDS=[["Dream destination", "destination"], ["Travel companions", "companions"], ["Travel season", "season"], ["Trip length", "duration"], ["Onboard preference", "onboardPreference"], ["Vehicle preference", "vehicle"], ["Trip style", "tripStyle"], ["Booking channel", "bookingChannel"], ["Booking lead time", "leadTime"], ["Booking motivator", "bookingMotivator"]];
-function travelProfile(answers,departurePort=null){if(!Array.isArray(answers)||answers.length!==10||answers.some(v=>!Number.isInteger(v)||v<0||v>3))return null;let result={};PROFILE_FIELDS.forEach(([label,key],i)=>{result[key]={label,value:Q[i][1][answers[i]].replace(/\s[\p{Extended_Pictographic}\uFE0F\u200D]+$/u,'').trim(),choice:answers[i]}});if(departurePort)result.departurePort={label:'Departure port',value:departurePort};return result;}
-const cacheKey='gfChallengePrototypeV09';
-let session={id:null,role:'host',phase:'home',step:0,answers:Array(10).fill(null),inviteMethod:'share',recipients:'',localFriends:[],hostAnswers:null,departurePort:null,hostPort:null,localFriendPorts:[]};
+const PROFILE_FIELDS=[["Dream destination", "destination"], ["Travel companions", "companions"], ["Travel season", "season"], ["Vehicle preference", "vehicle"], ["Trip style", "tripStyle"], ["Booking channel", "bookingChannel"], ["Booking lead time", "leadTime"], ["Booking motivator", "bookingMotivator"]];
+function travelProfile(answers,departurePort=null){if(!Array.isArray(answers)||answers.length!==8||answers.some(v=>!Number.isInteger(v)||v<0||v>3))return null;let result={};PROFILE_FIELDS.forEach(([label,key],i)=>{result[key]={label,value:Q[i][1][answers[i]].replace(/\s[\p{Extended_Pictographic}\uFE0F\u200D]+$/u,'').trim(),choice:answers[i]}});if(departurePort)result.departurePort={label:'Departure port',value:departurePort};return result;}
+const cacheKey='gfChallengePrototypeV10';
+let session={id:null,role:'host',phase:'home',step:0,answers:Array(8).fill(null),inviteMethod:'share',recipients:'',localFriends:[],hostAnswers:null,departurePort:null,hostPort:null,localFriendPorts:[]};
 let arc={active:false,paused:false,raf:0,score:0,lives:3,time:32,duration:32,shipX:220,targetX:null,rocks:[],last:0,spawn:0,keys:0,canvas:null,ctx:null,elapsed:0,invuln:0,finishing:false,result:'',waves:0,portY:-130,highScore:0};
 try{arc.highScore=Number(localStorage.getItem('gfFerryBestV5')||0)}catch(e){}
 const escapeHtml=s=>String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
@@ -127,53 +109,55 @@ function load(){try{return JSON.parse(localStorage.getItem(cacheKey)||'{}')}catc
 function urlFor(id){return location.protocol==='file:'?'DEMO-'+id:(location.origin+location.pathname+'?invite='+encodeURIComponent(id))}
 function navigation(phase){arcadeStop();session.phase=phase;render();}
 function render(){let html='';
- if(session.phase==='home')html=`<section class="home"><div class="intro"><h1>Enjoy your time and win free ferry tickets!</h1><p>Choose your game</p></div><button class="game-card" onclick="navigation('ferry')"><div class="game-art art-ferry"><img src="catch-the-ferry-v09.jpg" alt="A blue and white ferry sailing right towards rocks" width="1200" height="400" fetchpriority="high"></div><div class="game-content"><div class="game-row"><div><h2>Catch the Ferry</h2><p>Reach the harbour in 20 seconds. Dodge the rocks!</p><span class="pill">SINGLE PLAYER</span></div><span class="arrow">→</span></div></div></button><button class="game-card" onclick="openMatch()"><div class="game-art art-match"><img src="travel-match-v09.jpg" alt="A group of friends enjoying a sunny beach holiday together" width="1200" height="400" loading="lazy"></div><div class="game-content"><div class="game-row"><div><h2>Travel Match</h2><p>Invite friends or your partner and compare your travel styles.</p><span class="pill">MULTIPLAYER</span></div><span class="arrow">→</span></div></div></button><p class="tiny">Demo preview · prize draws and multiplayer sync are not live yet.</p></section>`;
- if(session.phase==='invite')html=`<section class="page"><button class="back" onclick="navigation('home')">← Back to games</button><div class="mini">TRAVEL MATCH</div><h1 class="page-title">Invite your friends 💌</h1><p class="subtitle">Invite your friends and start right away. They can answer whenever they like!</p><div class="invite-box"><h3>How would you like to invite them?</h3><div class="methods"><button class="method ${session.inviteMethod==='share'?'selected':''}" onclick="method('share')"><span class="ico">🔗</span>Share</button><button class="method ${session.inviteMethod==='email'?'selected':''}" onclick="method('email')"><span class="ico">✉️</span>Email</button><button class="method ${session.inviteMethod==='sms'?'selected':''}" onclick="method('sms')"><span class="ico">💬</span>SMS</button></div><div id="methodDetails">${methodDetails()}</div></div><button class="primary" onclick="inviteAndPlay()">Invite & Play →</button><div id="inviteFeedback" class="feedback" role="status"></div><p class="tiny">This demo opens your share, email or SMS app. GoFerry does not send messages. Your quiz starts right away.</p></section>`;
- if(session.phase==='quiz')html=`<section class="page"><button class="back" onclick="confirmExit()">← Travel Challenge</button><div class="mini">${session.role==='host'?'YOUR TRAVEL MATCH':'FRIEND INVITATION'}</div><div class="progress-label"><span>Question ${session.step+1} of 10</span><span>${(session.step+1)*10}%</span></div><div class="bar"><div style="width:${(session.step+1)*10}%"></div></div><h2 class="question">${Q[session.step][0]}</h2><div>${Q[session.step][1].map((a,i)=>`<button class="answer ${session.answers[session.step]===i?'active':''}" onclick="answer(${i})"><span class="radio"></span><span>${a}</span></button>`).join('')}</div>${portPicker()}<div class="controls"><button class="secondary" ${session.step===0?'disabled':''} onclick="prevQuestion()">← Back</button><button class="primary" ${session.answers[session.step]===null||!portIsValid()?'disabled':''} onclick="nextQuestion()">${session.step===9?'Finish! 🎉':'Next →'}</button></div></section>`;
+ if(session.phase==='home')html=`<section class="home"><div class="intro"><h1>Enjoy your time and win free ferry tickets!</h1><p>Choose your game</p></div><button class="game-card" onclick="navigation('ferry')"><div class="game-art art-ferry"><img src="catch-the-ferry-v09.jpg" alt="A blue and white ferry sailing right towards rocks" width="1200" height="400" fetchpriority="high"></div><div class="game-content"><div class="game-row"><div><h2>Catch the Ferry</h2><p>Reach the harbour in 20 seconds. Dodge the rocks!</p><span class="pill">SINGLE PLAYER</span></div><span class="arrow">→</span></div></div></button><button class="game-card" onclick="openMatch()"><div class="game-art art-match"><img src="travel-match-v09.jpg" alt="A group of friends enjoying a sunny beach holiday together" width="1200" height="400" loading="lazy"></div><div class="game-content"><div class="game-row"><div><h2>Travel Match</h2><p>Invite a friend and compare your travel styles.</p><span class="pill">2 PLAYERS</span></div><span class="arrow">→</span></div></div></button><p class="tiny">Demo preview · prize draws and multiplayer sync are not live yet.</p></section>`;
+ if(session.phase==='invite')html=`<section class="page"><button class="back" onclick="navigation('home')">← Back to games</button><h1 class="page-title">TRAVEL MATCH</h1><div class="steps" aria-label="How Travel Match works"><div class="step-card"><span class="step-number">1</span><span>Invite a friend</span></div><div class="step-card"><span class="step-number">2</span><span>Express yourself through your answers</span></div><div class="step-card"><span class="step-number">3</span><span>See your travel match percentage &amp; win rewards</span></div></div><div class="invite-box"><h3>How would you like to invite your friend?</h3><div class="methods"><button class="method ${session.inviteMethod==='share'?'selected':''}" onclick="method('share')"><span class="ico">🔗</span>Share</button><button class="method ${session.inviteMethod==='email'?'selected':''}" onclick="method('email')"><span class="ico">✉️</span>Email</button><button class="method ${session.inviteMethod==='sms'?'selected':''}" onclick="method('sms')"><span class="ico">💬</span>SMS</button></div><div id="methodDetails">${methodDetails()}</div></div><button class="primary" onclick="inviteAndPlay()">Invite &amp; Play →</button><div id="inviteFeedback" class="feedback" role="status"></div><p class="tiny">This demo opens your share, email or SMS app. GoFerry does not send messages. Your quiz starts right away.</p></section>`;
+ if(session.phase==='quiz')html=`<section class="page"><button class="back" onclick="confirmExit()">← Exit Travel Match</button><div class="mini">${session.role==='host'?'YOUR TRAVEL MATCH':'FRIEND INVITATION'}</div><div class="progress-label"><span>Question ${session.step+1} of 8</span><span>${Math.round((session.step+1)/8*100)}%</span></div><div class="bar"><div style="width:${(session.step+1)/8*100}%"></div></div><h2 class="question">${Q[session.step][0]}</h2><div>${Q[session.step][1].map((a,i)=>`<button class="answer ${session.answers[session.step]===i?'active':''}" onclick="answer(${i})"><span class="radio"></span><span>${a}</span></button>`).join('')}</div>${portPicker()}<div class="controls"><button class="secondary" ${session.step===0?'disabled':''} onclick="prevQuestion()">← Back</button><button class="primary" ${session.answers[session.step]===null||!portIsValid()?'disabled':''} onclick="nextQuestion()">${session.step===7?'Finish! 🎉':'Next →'}</button></div></section>`;
  if(session.phase==='done')html=renderDone();
- if(session.phase==='friendJoin')html=`<section class="page center"><div class="success-circle">💌</div><div class="mini">YOU'RE INVITED</div><h1 class="page-title">Travel Match!</h1><p class="subtitle">A friend invited you to compare your travel styles. Just 10 quick questions!</p><button class="primary" onclick="beginFriend()">Let's Play →</button><button class="linkbtn" onclick="navigation('home')">See all games</button></section>`;
+ if(session.phase==='friendJoin')html=`<section class="page center"><div class="success-circle">💌</div><div class="mini">YOU'RE INVITED</div><h1 class="page-title">Travel Match!</h1><p class="subtitle">A friend invited you to compare your travel styles. Just 8 quick questions!</p><button class="primary" onclick="beginFriend()">Let's Play →</button><button class="linkbtn" onclick="navigation('home')">See all games</button></section>`;
  if(session.phase==='ferry')html=`<section class="page"><button class="back" onclick="navigation('home')">← Back to games</button><div class="ferry-intro"><div class="mini">SINGLE PLAYER · ARCADE</div><h1 class="page-title">Catch the Ferry ⛴️</h1><p class="subtitle">Reach the harbour in 20 seconds. Dodge the rocks and keep at least one life.</p></div><div class="ferry-hud"><div class="hud-tile"><small>TIME</small><strong id="arcTime">20s</strong></div><div class="hud-tile"><small>LIVES</small><strong id="arcLive">♥ ♥ ♥</strong></div><div class="hud-tile"><small>SCORE</small><strong id="arcScore">0</strong></div></div><div class="ferry-progress" aria-label="Progress to harbour"><div id="arcProgress" class="ferry-progress-fill"></div></div><div class="sea" id="seaStage"><canvas id="seaCanvas" width="440" height="490" aria-label="Dodge the rocks. Drag the ferry left or right."></canvas></div><p id="arcNotice" class="ferry-notice" role="status">Press Start to set sail.</p><div class="ferry-controls"><button aria-label="Left" onpointerdown="hold(-1,event)" onpointerup="release(event)" onpointercancel="release(event)" onpointerleave="release(event)">◀</button><button aria-label="Right" onpointerdown="hold(1,event)" onpointerup="release(event)" onpointercancel="release(event)" onpointerleave="release(event)">▶</button></div><div class="ferry-action-row"><button id="startArc" class="primary" onclick="startArcade()">⛴️ Start!</button><button id="pauseArc" class="secondary" onclick="toggleArcadePause()" disabled>Pause</button></div><p class="ferry-help">On mobile, drag the ferry across the sea or use the small arrow buttons. On desktop, use ← →.</p><p class="tiny">This demo works offline. Prize draw entries are not enabled.</p></section>`;
  if(session.phase==='ferryDone')html=`<section class="page center"><button class="back" onclick="navigation('home')">← Back to games</button><div class="mini">CATCH THE FERRY</div><div class="ferry-end-badge">${arc.result==='win'?'🏁':'🌊'}</div><h1 class="page-title">${arc.result==='win'?'You made it to port!':'Journey over!'}</h1><p class="subtitle">${arc.result==='win'?'Well done! You reached the harbour.':'The rocks cost you all your lives. Give it another try!'}</p><div class="ferry-result-score">${Math.round(arc.score).toLocaleString('el-GR')}</div><p class="tiny">SCORE</p><div class="ferry-end-high">🏆 Best score on this device: <strong>${Math.round(arc.highScore).toLocaleString('el-GR')}</strong></div><button class="primary" onclick="navigation('ferry')">↻ Play again</button><button class="linkbtn" onclick="navigation('home')">All games</button></section>`;
  app.innerHTML=html;
  if(session.phase==='ferry'){setupArcadeCanvas();drawSea();}
 }
-function methodDetails(){if(session.inviteMethod==='share')return '<p class="hint">Your device share menu will open. Choose WhatsApp, Viber or another app.</p>';return `<input id="recipient" class="field" autocomplete="off" placeholder="${session.inviteMethod==='email'?'friend@example.com, another@example.com':'+3069XXXXXXXX'}" value="${escapeHtml(session.recipients)}"><p class="hint">${session.inviteMethod==='email'?'You can enter multiple emails separated by commas.':'For SMS, one number per invitation in this demo.'}</p>`;}
+function methodDetails(){if(session.inviteMethod==='share')return '<p class="hint">Your device share menu will open. Choose WhatsApp, Viber or another app.</p>';return `<input id="recipient" class="field" autocomplete="off" placeholder="${session.inviteMethod==='email'?'friend@example.com':'+3069XXXXXXXX'}" value="${escapeHtml(session.recipients)}"><p class="hint">One invitation, one friend, one Travel Match.</p>`;}
 function openMatch(){session.inviteMethod='share';session.recipients='';session.role='host';session.id=uid();session.hostAnswers=null;session.localFriends=[];session.departurePort=null;session.hostPort=null;session.localFriendPorts=[];save();navigation('invite')}
 function method(m){session.recipients=document.getElementById('recipient')?.value||session.recipients;session.inviteMethod=m;render()}
 function shareLink(){return urlFor(session.id)}
 function inviteAndPlay(){
- const methodChosen=session.inviteMethod;let dest=document.getElementById('recipient')?.value?.trim()||'';session.recipients=dest;const link=shareLink();const msg='Play Travel Match with me on GoFerry! 🏝️ Answer 10 questions and see how well we match: '+link;
+ const methodChosen=session.inviteMethod;let dest=document.getElementById('recipient')?.value?.trim()||'';session.recipients=dest;const link=shareLink();const msg='Play Travel Match with me on GoFerry! 🏝️ Answer 8 questions and see how well we match: '+link;
  // Trigger the native handoff synchronously as part of the user's click, before any state updates.
  if(location.protocol==='file:'){
   // file:// is intentionally a local demo; its link is not usable as an online invite.
   if(methodChosen==='share'&&navigator.share){navigator.share({title:'GoFerry Travel Match (demo)',text:'GoFerry Travel Match — offline prototype. Online invites need hosting.'}).catch(()=>{});}
-  else if(methodChosen==='email'&&dest){location.href='mailto:'+encodeURIComponent(dest.split(',').map(x=>x.trim()).join(','))+'?subject='+encodeURIComponent('GoFerry Travel Match')+'&body='+encodeURIComponent('Offline prototype: invitation links will work once this demo is hosted online.');}
+  else if(methodChosen==='email'&&dest){location.href='mailto:'+encodeURIComponent(dest)+'?subject='+encodeURIComponent('GoFerry Travel Match')+'&body='+encodeURIComponent('Offline prototype: invitation links will work once this demo is hosted online.');}
   else if(methodChosen==='sms'&&dest){location.href='sms:'+encodeURIComponent(dest)+'?body='+encodeURIComponent('GoFerry Travel Match: offline demo — online invitations not enabled yet.');}
  }else if(methodChosen==='share'){
   if(navigator.share){navigator.share({title:'GoFerry Travel Match',text:msg,url:link}).catch(()=>{});}
   else if(navigator.clipboard?.writeText){navigator.clipboard.writeText(msg).catch(()=>{});}
- }else if(methodChosen==='email'&&dest){location.href='mailto:'+dest.split(',').map(x=>encodeURIComponent(x.trim())).join(',')+'?subject='+encodeURIComponent('GoFerry Travel Match')+'&body='+encodeURIComponent(msg);}
+ }else if(methodChosen==='email'&&dest){location.href='mailto:'+encodeURIComponent(dest)+'?subject='+encodeURIComponent('GoFerry Travel Match')+'&body='+encodeURIComponent(msg);}
  else if(methodChosen==='sms'&&dest){location.href='sms:'+encodeURIComponent(dest)+'?body='+encodeURIComponent(msg);}
- session.answers=Array(10).fill(null);session.departurePort=null;session.step=0;session.role='host';navigation('quiz');
+ session.answers=Array(8).fill(null);session.departurePort=null;session.step=0;session.role='host';navigation('quiz');
 }
 const PORT_OPTIONS=[['Piraeus','Rafina','Lavrio'],['Thessaloniki','Volos','Agios Konstantinos','Igoumenitsa','Patras','Kyllini','Kavala','Other Greek port'],['Ancona','Bari','Brindisi','Venice','Other Italian port']];
 function needsPort(){return false}
 function portIsValid(){return !needsPort()||PORT_OPTIONS[session.answers[4]].includes(session.departurePort)}
 function portPicker(){if(!needsPort())return '';return `<div class="port-picker"><label for="departurePort">Which port is calling? ⚓</label><select class="field" id="departurePort" onchange="choosePort(this.value)"><option value="">Pick your departure port</option>${PORT_OPTIONS[session.answers[4]].map(p=>`<option value="${escapeHtml(p)}" ${session.departurePort===p?'selected':''}>${escapeHtml(p)}</option>`).join('')}</select></div>`}
 function choosePort(value){if(needsPort()&&PORT_OPTIONS[session.answers[4]].includes(value)){session.departurePort=value;render()}}
-function answer(i){if(session.step===4&&session.answers[4]!==i)session.departurePort=null;session.answers[session.step]=i;render()}
+function answer(i){session.answers[session.step]=i;render()}
 function prevQuestion(){if(session.step>0)session.step--;render()}
-function nextQuestion(){if(session.answers[session.step]===null||!portIsValid())return;if(session.step<9){session.step++;render()}else{if(session.role==='host'){session.hostAnswers=[...session.answers];session.hostPort=session.departurePort;save()}else{session.localFriends.push([...session.answers]);session.localFriendPorts.push(session.departurePort);save()}navigation('done')}}
+function nextQuestion(){if(session.answers[session.step]===null||!portIsValid())return;if(session.step<7){session.step++;render()}else{if(session.role==='host'){session.hostAnswers=[...session.answers];session.hostPort=session.departurePort;save()}else{session.localFriends=[[...session.answers]];session.localFriendPorts=[session.departurePort];save()}navigation('done')}}
 function confirmExit(){if(confirm('Go back to the home screen?'))navigation('home')}
-function beginFriend(){session.role='friend';session.answers=Array(10).fill(null);session.departurePort=null;session.step=0;navigation('quiz')}
-function match(a,b){return Math.round(a.filter((v,i)=>v===b[i]).length/10*100)}
-function groupScore(){const all=[session.hostAnswers,...session.localFriends].filter(Boolean);if(all.length<2)return null;let sum=0,n=0;for(let i=0;i<all.length;i++)for(let j=i+1;j<all.length;j++){sum+=match(all[i],all[j]);n++}return Math.round(sum/n)}
-function renderDone(){let count=session.localFriends.length,score=groupScore(),isHost=session.role==='host';let html=`<section class="page center"><div class="success-circle">✅</div><div class="mini">TRAVEL MATCH</div><h1 class="page-title">${score===null?"You're all set! 🎉":"Your Travel Match is ready! 🎉"}</h1><p class="subtitle">${score===null?'Now your invited friends need to complete their quiz. We’ll reveal your Travel Match when everyone is ready!':'Here’s how your travel styles match!'}</p>`;
- if(score!==null){html+=`<div class="resultcard"><div class="eyebrow">TRAVEL COMPATIBILITY</div><div class="stat">${score}%</div><div>${score>=90?'Same island energy! 💛':score>=60?'Different plans, perfect crew! ✨':'Opposites make the best travel stories! 🗺️'}</div></div><div class="app-cta"><h2>Ready for your next adventure?</h2><p>Whatever your match score, the best trips are the ones you share. Download the GoFerry app and enter the draw for free ferry tickets and more travel prizes!</p><button class="primary" onclick="appComingSoon()">Download the GoFerry app</button><div id="appStatus" class="feedback"></div><p class="draw-note">Prototype CTA — the official App Store and Google Play links will be connected before launch.</p></div>`;}
- if(isHost){html+=`<div class="invite-url"><span>${escapeHtml(shareLink())}</span><button onclick="copyInvite()">Copy</button></div><div id="copyStatus" class="feedback"></div><button class="primary" onclick="beginFriend()">▶ Demo: friend answers on this device</button><p class="tiny">${count} friends have answered locally. Real device-to-device sync needs the backend described in the technical handoff.</p>`}
- else{html+=`<button class="primary" onclick="beginFriend()">▶ Next friend (local demo)</button><p class="tiny">This device-only action demonstrates another invited player completing the quiz.</p>`;}
+function beginFriend(){session.role='friend';session.answers=Array(8).fill(null);session.departurePort=null;session.step=0;navigation('quiz')}
+function match(a,b){return Math.round(a.filter((v,i)=>v===b[i]).length/8*100)}
+function groupScore(){return session.hostAnswers&&session.localFriends[0]?match(session.hostAnswers,session.localFriends[0]):null}
+function resultMessage(score){if(score<=25)return 'Opposites make the best travel stories! 🗺️ We take care of your booking, you take care of the rest.';if(score<=50)return 'The perfect travel match doesn’t exist — book the trip and enjoy the adventure! ⛴️ We take care of your booking, you take care of the rest.';if(score<=75)return 'A perfect match is overrated — unforgettable holidays aren’t! 😎 We take care of your booking, you take care of the rest.';return 'A match this perfect deserves a summer escape! ☀️ Make it real in 5 simple booking steps.'}
+function renderDone(){let score=groupScore(),isHost=session.role==='host';let html=`<section class="page center"><div class="success-circle">✅</div><div class="mini">TRAVEL MATCH</div><h1 class="page-title">${score===null?"You're all set! 🎉":"Your Travel Match is ready! 🎉"}</h1><p class="subtitle">${score===null?'Now your invited friend needs to complete the quiz. We’ll reveal your Travel Match when both of you are ready!':'Here’s how your travel styles match!'}</p>`;
+ if(score!==null){html+=`<div class="resultcard"><div class="eyebrow">TRAVEL COMPATIBILITY</div><div class="stat">${score}%</div><div class="result-message">${resultMessage(score)}</div></div><div class="app-cta"><h2>Ready for your next adventure?</h2><p>Download the GoFerry app and enter the draw for free ferry tickets and more travel gifts!</p><button class="primary" onclick="appComingSoon()">Download the GoFerry app</button><div id="appStatus" class="feedback"></div><p class="draw-note">Prototype CTA — the official App Store and Google Play links will be connected before launch.</p></div>`;}
+ if(isHost){html+=`<div class="share-again"><h3>${score===null?'Still need to invite your friend?':'Share Travel Match'}</h3><p>${score===null?'Send your invitation now. Your answers are saved on this device.':'Invite a friend to try Travel Match too.'}</p><button class="secondary" onclick="shareAfterFinish()">Share invitation 🔗</button></div><div class="invite-url"><span>${escapeHtml(shareLink())}</span><button onclick="copyInvite()">Copy</button></div><div id="copyStatus" class="feedback"></div>${score===null?'<button class="primary" onclick="beginFriend()">▶ Demo: friend answers on this device</button>':''}<p class="tiny">Travel Match is designed for 2 players. Real device-to-device sync needs the backend described in the technical handoff.</p>`}
+ else{html+=`<p class="tiny">Both players have now completed the quiz.</p>`;}
  html+=`<button class="linkbtn" onclick="navigation('home')">← Back to Games</button><div class="note"><strong>Prototype note:</strong> Cross-device invitations, completion tracking, prize entries and the private dashboard require the API and database specified in the handoff. No real entry is created in this demo.</div></section>`;return html}
 function appComingSoon(){const el=document.getElementById('appStatus');if(el)el.textContent='App links will be connected when the GoFerry app is published.'}
+async function shareAfterFinish(){const link=shareLink(),msg='Play Travel Match with me on GoFerry! 🏝️ Answer 8 questions and see how well we match: '+link;if(navigator.share){try{await navigator.share({title:'GoFerry Travel Match',text:msg,url:link});return}catch(e){if(e.name==='AbortError')return}}await copyInvite()}
 async function copyInvite(){let val=shareLink();try{await navigator.clipboard.writeText(val);document.getElementById('copyStatus').textContent='Demo link copied.'}catch(e){document.getElementById('copyStatus').textContent='Please copy the link manually.'}}
 function arcadeStop(){arc.active=false;arc.paused=false;cancelAnimationFrame(arc.raf);arc.keys=0;arc.targetX=null}
 const SEA_W=440,SEA_H=490,SHIP_Y=391;
