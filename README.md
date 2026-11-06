@@ -1,19 +1,30 @@
-# GoFerry Travel Challenge v0.9
+# GoFerry Travel Challenge v0.15
 
-Static mobile-friendly prototype, published from main / root with GitHub Pages.
+Mobile-first promotional game prototype published from `main` / root with GitHub Pages.
 
-- Flat/vector illustrations for both games, aligned with the original visual style.
-- Simplified home screen without repeated Travel Challenge or Available Games labels.
-- Travel Match: 10 playful ferry-focused questions, including onboard preference, vehicle, island hopping, booking channel, booking lead time and booking motivator.
-- Customer-facing travel profile removed. Commercial interpretation belongs only in GoFerry's private dashboard.
-- Host invitation remains at the beginning; after answering, the host waits for invited players.
-- Positive score messaging and future GoFerry app/prize-draw CTA added.
-- `admin-demo.html` presents a sample-data dashboard for team review.
-- `IMPLEMENTATION_HANDOFF.md` defines the production API/data work.
-- Catch the Ferry gameplay is unchanged.
-- Demo only: prize draws, cross-device results, app attribution and central collection of customer data are not enabled. Answers stay in the browser.
-- No build tools, third-party scripts, paid services or backend.
+## Current experience
 
-## Images
+- Catch the Ferry arcade game.
+- Two-player Travel Match with 8 playful, commercially useful questions.
+- Unique invitation links and cross-device answer synchronization through Supabase.
+- Optional email capture for a clearly labelled demo 5% coupon.
+- Separate optional marketing consent.
+- Animated compatibility result and full-screen confetti rain.
+- Private live-data dashboard at `admin-demo.html`, protected by verified `@takt.gr` authentication and database Row Level Security.
+- GoFerry app CTA click tracking.
 
-`catch-the-ferry-v09.svg` and `travel-match-v09.svg` are original flat vector illustrations prepared for the two cards.
+## One-time database setup
+
+Run `supabase-setup.sql` in the SQL Editor of Supabase project `vqkrhqmzmzbkbypnudha`.
+
+For dashboard magic-link authentication, add this redirect URL in Supabase Authentication → URL Configuration:
+
+`https://georgekallinikos.github.io/gf-travel-challenge/admin-demo.html`
+
+Only the browser-safe Supabase publishable key is included in the website. No database password or secret key is stored in this repository.
+
+## Prototype limitations
+
+- `GOFERRY5` is a demo coupon; no real discount or coupon email is issued.
+- App Store and Google Play links are not connected yet.
+- Privacy text, retention schedule and final campaign terms require business/legal approval before production launch.
