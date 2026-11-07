@@ -24,12 +24,16 @@ create table if not exists public.travel_matches (
   app_cta_clicks integer not null default 0,
   invite_method text,
   guest_invite_contact text,
+  host_visitor_id text,
+  guest_visitor_id text,
   host_tag text,
   guest_tag text
 );
 
 alter table public.travel_matches add column if not exists invite_method text;
 alter table public.travel_matches add column if not exists guest_invite_contact text;
+alter table public.travel_matches add column if not exists host_visitor_id text;
+alter table public.travel_matches add column if not exists guest_visitor_id text;
 alter table public.travel_matches add column if not exists host_tag text;
 alter table public.travel_matches add column if not exists guest_tag text;
 
@@ -208,12 +212,37 @@ begin
 end;
 $$;
 
+create or replace function public.tm_save_visitor(
+  p_token text,
+  p_role text,
+  p_visitor_id text
+)
+returns boolean
+language plpgsql
+security definer
+set search_path = public
+as $$
+begin
+  if p_role not in ('host', 'friend') then raise exception 'Invalid player role'; end if;
+  if p_visitor_id !~ '^GFV-[A-Za-z0-9-]{12,64}$' then raise exception 'Invalid visitor ID'; end if;
+  if p_role = 'host' then
+    update public.travel_matches set host_visitor_id = p_visitor_id, updated_at = now()
+    where invite_token = p_token;
+  else
+    update public.travel_matches set guest_visitor_id = p_visitor_id, updated_at = now()
+    where invite_token = p_token;
+  end if;
+  return found;
+end;
+$$;
+
 revoke all on function public.tm_create_match() from public;
 revoke all on function public.tm_submit_answers(text,text,smallint[]) from public;
 revoke all on function public.tm_status(text) from public;
 revoke all on function public.tm_save_email(text,text,text,boolean) from public;
 revoke all on function public.tm_track_app_click(text) from public;
 revoke all on function public.tm_save_invite(text,text,text) from public;
+revoke all on function public.tm_save_visitor(text,text,text) from public;
 
 grant execute on function public.tm_create_match() to anon, authenticated;
 grant execute on function public.tm_submit_answers(text,text,smallint[]) to anon, authenticated;
@@ -221,6 +250,7 @@ grant execute on function public.tm_status(text) to anon, authenticated;
 grant execute on function public.tm_save_email(text,text,text,boolean) to anon, authenticated;
 grant execute on function public.tm_track_app_click(text) to anon, authenticated;
 grant execute on function public.tm_save_invite(text,text,text) to anon, authenticated;
+grant execute on function public.tm_save_visitor(text,text,text) to anon, authenticated;
 
 -- Private dashboard maintenance. Only an authenticated @takt.gr account can run it.
 create or replace function public.tm_admin_clear_all()

@@ -107,6 +107,9 @@ let arc={active:false,paused:false,raf:0,score:0,lives:3,time:32,duration:32,shi
 try{arc.highScore=Number(localStorage.getItem('gfFerryBestV5')||0)}catch(e){}
 const escapeHtml=s=>String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const uid=()=>Math.random().toString(36).slice(2,8).toUpperCase()+Date.now().toString(36).slice(-4).toUpperCase();
+const visitorKey='gfAnonymousVisitorV1';
+function getVisitorId(){try{let id=localStorage.getItem(visitorKey);if(!id){const raw=globalThis.crypto?.randomUUID?.()||(uid()+uid());id='GFV-'+raw;localStorage.setItem(visitorKey,id)}return id}catch(e){return 'GFV-'+uid()+uid()}}
+const visitorId=getVisitorId();
 function save(){try{localStorage.setItem(cacheKey,JSON.stringify({id:session.id,role:session.role,hostAnswers:session.hostAnswers,localFriends:session.localFriends,hostPort:session.hostPort,localFriendPorts:session.localFriendPorts,remote:session.remote,remoteScore:session.remoteScore,email:session.email,marketing:session.marketing,couponClaimed:session.couponClaimed}))}catch(e){}}
 function load(){try{return JSON.parse(localStorage.getItem(cacheKey)||'{}')}catch(e){return {}}}
 function urlFor(id){return location.protocol==='file:'?'DEMO-'+id:(location.origin+location.pathname+'?invite='+encodeURIComponent(id))}
@@ -128,10 +131,11 @@ function render(){let html='';
  if(session.phase==='done'&&groupScore()===null&&session.remote){scheduleStatusPoll();}
 }
 function methodDetails(){if(session.inviteMethod==='share')return '<p class="hint">Your device share menu will open. Choose WhatsApp, Viber or another app.</p>';return `<input id="recipient" class="field" autocomplete="off" placeholder="${session.inviteMethod==='email'?'friend@example.com':'+3069XXXXXXXX'}" value="${escapeHtml(session.recipients)}"><p class="hint">One invitation, one friend, one Travel Match.</p>`;}
-async function openMatch(){session.inviteMethod='share';session.recipients='';session.role='host';session.hostAnswers=null;session.localFriends=[];session.departurePort=null;session.hostPort=null;session.localFriendPorts=[];session.remoteScore=null;session.syncError='';navigation('matchLoading');try{session.id=await rpc('tm_create_match',{});session.remote=true}catch(e){session.id=uid();session.remote=false;session.syncError='Online matching is not configured yet.'}save();navigation('invite')}
+async function openMatch(){session.inviteMethod='share';session.recipients='';session.role='host';session.hostAnswers=null;session.localFriends=[];session.departurePort=null;session.hostPort=null;session.localFriendPorts=[];session.remoteScore=null;session.syncError='';navigation('matchLoading');try{session.id=await rpc('tm_create_match',{});session.remote=true;await saveVisitor('host')}catch(e){session.id=uid();session.remote=false;session.syncError='Online matching is not configured yet.'}save();navigation('invite')}
 function method(m){session.recipients=document.getElementById('recipient')?.value||session.recipients;session.inviteMethod=m;render()}
 function shareLink(){return urlFor(session.id)}
 function saveInviteDetails(method,contact){if(!session.remote)return;fetch(`${SUPABASE_URL}/rest/v1/rpc/tm_save_invite`,{method:'POST',headers:{apikey:SUPABASE_KEY,'Content-Type':'application/json'},body:JSON.stringify({p_token:session.id,p_method:method,p_contact:contact||null}),keepalive:true}).catch(()=>{})}
+function saveVisitor(role=session.role){if(!session.remote||!session.id)return Promise.resolve(false);return rpc('tm_save_visitor',{p_token:session.id,p_role:role,p_visitor_id:visitorId}).catch(()=>false)}
 function inviteAndPlay(){
  const methodChosen=session.inviteMethod;let dest=document.getElementById('recipient')?.value?.trim()||'';session.recipients=dest;const link=shareLink();const msg='Play Travel Match with me on GoFerry! 🏝️ Answer 8 questions and see how well we match: '+link;
  saveInviteDetails(methodChosen,dest);
@@ -158,7 +162,7 @@ function prevQuestion(){if(session.step>0)session.step--;render()}
 function nextQuestion(){if(session.answers[session.step]===null||!portIsValid())return;if(session.step<7){session.step++;render()}else{finishQuiz()}}
 async function finishQuiz(){const answers=[...session.answers];if(session.role==='host'){session.hostAnswers=answers;session.hostPort=session.departurePort}else{session.localFriends=[answers];session.localFriendPorts=[session.departurePort]}if(session.remote){try{const status=await rpc('tm_submit_answers',{p_token:session.id,p_role:session.role,p_answers:answers});if(Number.isInteger(status?.score))session.remoteScore=status.score}catch(e){session.syncError='Your answers are saved on this device, but online synchronization failed.'}}save();navigation('claim')}
 function confirmExit(){if(confirm('Go back to the home screen?'))navigation('home')}
-function beginFriend(){session.role='friend';session.answers=Array(8).fill(null);session.departurePort=null;session.step=0;navigation('quiz')}
+function beginFriend(){session.role='friend';session.answers=Array(8).fill(null);session.departurePort=null;session.step=0;saveVisitor('friend');navigation('quiz')}
 function match(a,b){return Math.round(a.filter((v,i)=>v===b[i]).length/8*100)}
 function groupScore(){if(Number.isInteger(session.remoteScore))return session.remoteScore;return session.hostAnswers&&session.localFriends[0]?match(session.hostAnswers,session.localFriends[0]):null}
 function renderClaim(){return `<section class="page"><button class="back" onclick="continueWithoutCoupon()">Skip for now</button><div class="success-circle">🎁</div><div class="claim-card"><h2>You’ve unlocked 5% off!</h2><p>Enter your email to register your demo GoFerry coupon.</p><div class="coupon-note"><strong>Demo coupon:</strong> GOFERRY5 · No real discount or email is issued in this prototype.</div><input id="couponEmail" class="field" type="email" inputmode="email" autocomplete="email" placeholder="you@example.com" value="${escapeHtml(session.email)}"><label class="consent"><input id="marketingConsent" type="checkbox" ${session.marketing?'checked':''}><span>I’d also like to receive GoFerry offers and personalised travel inspiration. Optional.</span></label><button class="primary" onclick="claimCoupon()">Register my 5% demo coupon</button><button class="linkbtn" onclick="continueWithoutCoupon()">Continue without coupon</button><div id="claimStatus" class="feedback" role="status"></div></div></section>`}
@@ -282,5 +286,5 @@ window.addEventListener('keydown',e=>{if(session.phase!=='ferry')return;if(e.key
 window.addEventListener('keyup',e=>{if(e.key==='ArrowLeft'||e.key==='ArrowRight')arc.keys=0});
 window.addEventListener('blur',()=>{if(arc.active&&!arc.paused)toggleArcadePause()});
 document.addEventListener('visibilitychange',()=>{if(document.hidden&&arc.active&&!arc.paused)toggleArcadePause()});
-(function init(){const params=new URLSearchParams(location.search),invite=params.get('invite'),saved=load();if(invite&&/^[A-Za-z0-9_-]{16,64}$/.test(invite)){session.id=invite;session.role='friend';session.remote=true;session.phase='friendJoin';}else if(saved.id&&saved.role==='host'&&saved.hostAnswers){Object.assign(session,saved,{phase:'done',role:'host'});}render()})();
+(function init(){const params=new URLSearchParams(location.search),invite=params.get('invite'),saved=load();if(invite&&/^[A-Za-z0-9_-]{16,64}$/.test(invite)){session.id=invite;session.role='friend';session.remote=true;session.phase='friendJoin';saveVisitor('friend');}else if(saved.id&&saved.role==='host'&&saved.hostAnswers){Object.assign(session,saved,{phase:'done',role:'host'});saveVisitor('host');}render()})();
 </script></body></html>
