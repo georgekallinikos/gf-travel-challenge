@@ -26,11 +26,16 @@ create table if not exists public.travel_matches (
 
 alter table public.travel_matches enable row level security;
 revoke all on public.travel_matches from anon, authenticated;
-grant select on public.travel_matches to authenticated;
+grant select, delete on public.travel_matches to authenticated;
 
 drop policy if exists "takt staff can read travel matches" on public.travel_matches;
 create policy "takt staff can read travel matches"
 on public.travel_matches for select to authenticated
+using (lower(coalesce(auth.jwt() ->> 'email', '')) like '%@takt.gr');
+
+drop policy if exists "takt staff can delete travel matches" on public.travel_matches;
+create policy "takt staff can delete travel matches"
+on public.travel_matches for delete to authenticated
 using (lower(coalesce(auth.jwt() ->> 'email', '')) like '%@takt.gr');
 
 create or replace function public.tm_create_match()
