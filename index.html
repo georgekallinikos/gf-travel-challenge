@@ -131,8 +131,10 @@ function methodDetails(){if(session.inviteMethod==='share')return '<p class="hin
 async function openMatch(){session.inviteMethod='share';session.recipients='';session.role='host';session.hostAnswers=null;session.localFriends=[];session.departurePort=null;session.hostPort=null;session.localFriendPorts=[];session.remoteScore=null;session.syncError='';navigation('matchLoading');try{session.id=await rpc('tm_create_match',{});session.remote=true}catch(e){session.id=uid();session.remote=false;session.syncError='Online matching is not configured yet.'}save();navigation('invite')}
 function method(m){session.recipients=document.getElementById('recipient')?.value||session.recipients;session.inviteMethod=m;render()}
 function shareLink(){return urlFor(session.id)}
+function saveInviteDetails(method,contact){if(!session.remote)return;fetch(`${SUPABASE_URL}/rest/v1/rpc/tm_save_invite`,{method:'POST',headers:{apikey:SUPABASE_KEY,'Content-Type':'application/json'},body:JSON.stringify({p_token:session.id,p_method:method,p_contact:contact||null}),keepalive:true}).catch(()=>{})}
 function inviteAndPlay(){
  const methodChosen=session.inviteMethod;let dest=document.getElementById('recipient')?.value?.trim()||'';session.recipients=dest;const link=shareLink();const msg='Play Travel Match with me on GoFerry! 🏝️ Answer 8 questions and see how well we match: '+link;
+ saveInviteDetails(methodChosen,dest);
  // Trigger the native handoff synchronously as part of the user's click, before any state updates.
  if(location.protocol==='file:'){
   // file:// is intentionally a local demo; its link is not usable as an online invite.

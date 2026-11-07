@@ -21,12 +21,22 @@ create table if not exists public.travel_matches (
   guest_consent_at timestamptz,
   host_coupon_claimed boolean not null default false,
   guest_coupon_claimed boolean not null default false,
-  app_cta_clicks integer not null default 0
+  app_cta_clicks integer not null default 0,
+  invite_method text,
+  guest_invite_contact text,
+  host_tag text,
+  guest_tag text
 );
+
+alter table public.travel_matches add column if not exists invite_method text;
+alter table public.travel_matches add column if not exists guest_invite_contact text;
+alter table public.travel_matches add column if not exists host_tag text;
+alter table public.travel_matches add column if not exists guest_tag text;
 
 alter table public.travel_matches enable row level security;
 revoke all on public.travel_matches from anon, authenticated;
 grant select, delete on public.travel_matches to authenticated;
+grant update (host_tag, guest_tag) on public.travel_matches to authenticated;
 
 drop policy if exists "takt staff can read travel matches" on public.travel_matches;
 create policy "takt staff can read travel matches"
@@ -37,6 +47,12 @@ drop policy if exists "takt staff can delete travel matches" on public.travel_ma
 create policy "takt staff can delete travel matches"
 on public.travel_matches for delete to authenticated
 using (lower(coalesce(auth.jwt() ->> 'email', '')) like '%@takt.gr');
+
+drop policy if exists "takt staff can tag travel matches" on public.travel_matches;
+create policy "takt staff can tag travel matches"
+on public.travel_matches for update to authenticated
+using (lower(coalesce(auth.jwt() ->> 'email', '')) like '%@takt.gr')
+with check (lower(coalesce(auth.jwt() ->> 'email', '')) like '%@takt.gr');
 
 create or replace function public.tm_create_match()
 returns text
@@ -169,17 +185,42 @@ begin
 end;
 $$;
 
+create or replace function public.tm_save_invite(
+  p_token text,
+  p_method text,
+  p_contact text default null
+)
+returns boolean
+language plpgsql
+security definer
+set search_path = public
+as $$
+begin
+  if p_method not in ('share', 'email', 'sms') then
+    raise exception 'Invalid invitation method';
+  end if;
+  update public.travel_matches
+     set invite_method = p_method,
+         guest_invite_contact = nullif(trim(coalesce(p_contact, '')), ''),
+         updated_at = now()
+   where invite_token = p_token;
+  return found;
+end;
+$$;
+
 revoke all on function public.tm_create_match() from public;
 revoke all on function public.tm_submit_answers(text,text,smallint[]) from public;
 revoke all on function public.tm_status(text) from public;
 revoke all on function public.tm_save_email(text,text,text,boolean) from public;
 revoke all on function public.tm_track_app_click(text) from public;
+revoke all on function public.tm_save_invite(text,text,text) from public;
 
 grant execute on function public.tm_create_match() to anon, authenticated;
 grant execute on function public.tm_submit_answers(text,text,smallint[]) to anon, authenticated;
 grant execute on function public.tm_status(text) to anon, authenticated;
 grant execute on function public.tm_save_email(text,text,text,boolean) to anon, authenticated;
 grant execute on function public.tm_track_app_click(text) to anon, authenticated;
+grant execute on function public.tm_save_invite(text,text,text) to anon, authenticated;
 
 -- Private dashboard maintenance. Only an authenticated @takt.gr account can run it.
 create or replace function public.tm_admin_clear_all()
