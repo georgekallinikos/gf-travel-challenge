@@ -418,7 +418,7 @@ grant execute on function public.tm_link_identity(text,text) to anon, authentica
 grant execute on function public.tm_save_visitor(text,text,text,text) to anon, authenticated;
 
 -- Private dashboard maintenance. Only an authenticated @takt.gr account can run it.
-create or replace function public.tm_admin_clear_all()
+create or replace function public.tm_admin_clear_all_v2()
 returns bigint
 language plpgsql
 security definer
@@ -430,14 +430,14 @@ begin
   if lower(coalesce(auth.jwt() ->> 'email', '')) not like '%@takt.gr' then
     raise exception 'Not authorized';
   end if;
-  delete from public.visitor_events;
-  delete from public.visitor_identities;
-  delete from public.visitor_profiles;
-  delete from public.travel_matches;
+  delete from public.visitor_events where id is not null;
+  delete from public.visitor_identities where visitor_id is not null;
+  delete from public.visitor_profiles where visitor_id is not null;
+  delete from public.travel_matches where id is not null;
   get diagnostics deleted_count = row_count;
   return deleted_count;
 end;
 $$;
 
-revoke all on function public.tm_admin_clear_all() from public;
-grant execute on function public.tm_admin_clear_all() to authenticated;
+revoke all on function public.tm_admin_clear_all_v2() from public;
+grant execute on function public.tm_admin_clear_all_v2() to authenticated;
