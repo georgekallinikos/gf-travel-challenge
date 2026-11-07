@@ -175,3 +175,25 @@ grant execute on function public.tm_submit_answers(text,text,smallint[]) to anon
 grant execute on function public.tm_status(text) to anon, authenticated;
 grant execute on function public.tm_save_email(text,text,text,boolean) to anon, authenticated;
 grant execute on function public.tm_track_app_click(text) to anon, authenticated;
+
+-- Private dashboard maintenance. Only an authenticated @takt.gr account can run it.
+create or replace function public.tm_admin_clear_all()
+returns bigint
+language plpgsql
+security definer
+set search_path = public
+as $$
+declare
+  deleted_count bigint;
+begin
+  if lower(coalesce(auth.jwt() ->> 'email', '')) not like '%@takt.gr' then
+    raise exception 'Not authorized';
+  end if;
+  delete from public.travel_matches;
+  get diagnostics deleted_count = row_count;
+  return deleted_count;
+end;
+$$;
+
+revoke all on function public.tm_admin_clear_all() from public;
+grant execute on function public.tm_admin_clear_all() to authenticated;
