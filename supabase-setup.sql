@@ -297,7 +297,7 @@ alter table public.visitor_profiles enable row level security;
 alter table public.visitor_events enable row level security;
 alter table public.visitor_identities enable row level security;
 revoke all on public.visitor_profiles, public.visitor_events, public.visitor_identities from anon, authenticated;
-grant select on public.visitor_profiles, public.visitor_events, public.visitor_identities to authenticated;
+grant select, delete on public.visitor_profiles, public.visitor_events, public.visitor_identities to authenticated;
 
 drop policy if exists "takt staff can read visitor profiles" on public.visitor_profiles;
 create policy "takt staff can read visitor profiles" on public.visitor_profiles for select to authenticated
@@ -307,6 +307,15 @@ create policy "takt staff can read visitor events" on public.visitor_events for 
 using (lower(coalesce(auth.jwt() ->> 'email', '')) like '%@takt.gr');
 drop policy if exists "takt staff can read visitor identities" on public.visitor_identities;
 create policy "takt staff can read visitor identities" on public.visitor_identities for select to authenticated
+using (lower(coalesce(auth.jwt() ->> 'email', '')) like '%@takt.gr');
+drop policy if exists "takt staff can delete visitor profiles" on public.visitor_profiles;
+create policy "takt staff can delete visitor profiles" on public.visitor_profiles for delete to authenticated
+using (lower(coalesce(auth.jwt() ->> 'email', '')) like '%@takt.gr');
+drop policy if exists "takt staff can delete visitor events" on public.visitor_events;
+create policy "takt staff can delete visitor events" on public.visitor_events for delete to authenticated
+using (lower(coalesce(auth.jwt() ->> 'email', '')) like '%@takt.gr');
+drop policy if exists "takt staff can delete visitor identities" on public.visitor_identities;
+create policy "takt staff can delete visitor identities" on public.visitor_identities for delete to authenticated
 using (lower(coalesce(auth.jwt() ->> 'email', '')) like '%@takt.gr');
 
 create or replace function public.tm_track_event(
